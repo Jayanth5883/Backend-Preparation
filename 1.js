@@ -14,10 +14,10 @@ console.log(message)
 // (2)  var ,let ,const.
 // var,let,const are the three keywords used to declare variables.Let and const are introduced in modern js ES6(ECMAScript 6)
 // Feature                      var                   let           const
-// ScopeFunction                Scope / GlobalBlock   ScopeBlock    Scope
+// Scope               FunctionScope / Global         Block Scope   Block Scope
 // Reassignable?                Yes                   Yes           No
 // Redeclarable?                Yes (in same scope)   No            No
-// Hoisting BehaviorInitialized as undefinedHoisted, uninitialized (TDZ)Hoisted, uninitialized (TDZ)
+// Hoisting Behavior Initialized as undefinedHoisted, uninitialized (TDZ)Hoisted, uninitialized (TDZ)
 // Required Initialization?     No                    No           Yes
 
 // HOISTING-
@@ -32,7 +32,8 @@ console.log(message)
 // A value in JavaScript is always of a certain type. For example, a string or a number.
 
 // There are 8 js data types are there .7 are primitive and 1 are non primitive.
-// Number,bigint,string,boolean,null,undefined,symbol. object
+//PRIMITIVE- Number,bigint,string,boolean,null,undefined,symbol. 
+//NON PRIMITIVE- object(ARRAY,FUNCTIONS,DATE,MAP,SET).
 
 // number- The number represents both integer and floating point numbers.
 let n = 123;
@@ -79,14 +80,14 @@ const id = Symbol("id");
 user[id] = 101;
 console.log(user[id])
 
-
+// NON-PRIMITIVE-(Object,Array[],Function(),Date(),Map(),Set(){})
 // 8 Object-An object is used to store multiple related pieces of data together as key-value pairs.
 const user1 = {
     name: "Jayanth",
     age: 25,
     isAdmin: true
 };
-// Accessing objects 1.using dot notation and suare bracket.
+// Accessing objects 1.using dot notation and square bracket.
 console.log(user1.name);
 console.log(user["name"])
 
@@ -151,7 +152,7 @@ number.add(20);
 number.add(10);
 console.log(number)
 
-// (4) Operators- 
+// (4) Operators- UNARY,BINARY,ARITHMATIC,ASSAIGNMENT,COMPARISION,LOGICAL,BITWISE,NULLISH COALESCING??,TYPEOF()
 
 // Unary-Unary means an operator works with ONE operand.
 let u = 1;
@@ -217,7 +218,7 @@ console.log(typeof(10n))
 typeof Symbol()    
 typeof {}          
 
-// Bitwise operators 
+// 8. Bitwise operators 
 // & Both bits must be 1.
 // | At least one bit must be 1.
 // ^ Different bits are 1.
@@ -226,7 +227,7 @@ typeof {}
 // Right shift a >> b = floor(a ÷ 2^b)
 
 
-// (5)Type Coercion:
+// (5)Type Coercion:(STRING ,NUMERIC COERCION)
 //Type coercion is the automatic conversion of values from one data type to another.
 // Type coercion happens when you perform an operation on different data types, 
 // and the JavaScript engine tries to make them "fit" together.
