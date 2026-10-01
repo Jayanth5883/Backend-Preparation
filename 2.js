@@ -13,7 +13,7 @@ console.log(arr2[0])
 console.log(arr2[1].key)
 console.log(arr2[3]())
 
-// We can get an element by its number in square brackets:
+// We can get an element by its index number in square brackets:
 let fruits = ["guava", "hello"];
 console.log(fruits[0]);
 
@@ -27,9 +27,9 @@ console.log(fruits[2])
 
 // A queue is one of the most common uses of an array.
 // 1.push appends an element to the end.
-// 4.pop takes an element from the end.
-// 2.shift get an element from the beginning, advancing the queue, so that the 2nd element becomes the 1
-
+// 2.pop takes an element from the end.
+// 3.shift get an element from the beginning, advancing the queue, so that the 2nd element becomes the 1
+// 4.Unshift adds an element at the begining of an array 
 // Methods that work with the end of the array:
 // 1.Push()-Append the element to the end of the array:
 console.log(fruits.push("apple"))
@@ -64,16 +64,18 @@ obj.x = 10
 console.log(obj)
 
 // We can immediately put some properties into {...} as “key: value” pairs:
-user1 = {
+const user9 = {
     name: "jayanth",
     age: 24
-}
-// Accessing properties.
-console.log(user1.name)       // Dot notation
-console.log(user1["age"])    //bracket with quotetions
+};
 
-const key = "name"
-console.log(user1[key])     //Dynamic access only possible with square brackets
+// Accessing properties
+console.log(user9.name);      // Dot notation
+
+console.log(user9["age"]);    // Bracket notation with quotes
+
+const key = "name";
+console.log(user9[key]);      // Dynamic access using square brackets
 
 
 // Object can store different types of data types.
@@ -104,8 +106,6 @@ const p = { name, age };
 console.log(p)
 
 //2.3 Destructuring 
-// const { propertyName: variableName } = object;
-
 const person1 = {
     name1: "Jayanth",
     age1: 22,
@@ -116,7 +116,7 @@ const person1 = {
 const { name1, age1 } = person1;
 console.log(name1, age1)
 
-// Rename a property syntax.
+// Rename a property key syntax.
 // const { propertyName: variableName } = object;
 
 // fullName and city are now variables created by destructuring.
@@ -145,8 +145,8 @@ console.log(newabout)
 // 2.5 Rest operator means collecting the remaining values.
 const num = [1, 2, 3, 4, 56, 7]
 const [second, ...rest] = num
-console.log(second)
-console.log(rest)
+console.log(`firstone:${second}`)
+console.log(`remaining numbers:${rest}`)
 
 // Rest in Function
 function add(...numbers) {
@@ -202,6 +202,7 @@ const user3 = { name: 'Alice', address: { city: 'Paris' } };
 const city1 = user3 && user3.address && user3.address.city;
 
 // Modern way with optional chaining
+// ?. stops the property-access chain when the value on its left is null or undefined.
 const safeCity = user3.address?.city; // "Paris"
 const unknownZip = user3.address?.zipCode?.code; // undefined (No crash!)
 console.log(safeCity);
@@ -220,10 +221,12 @@ const helper = {
 }
 
 console.log(helper.logmessage("jayanth"));
-console.log(helper.missedmessage?.());
+console.log(helper.logmessage?.());
 
 // Optional chaining frequently pairs with the nullish coalescing operator (??)
 //  to provide a clean fallback value whenever a property is missing
+// ?.  → safely try to access
+// ??  → if result is null/undefined, use fallback
 const person4 = { nam: "jayanth" }
 const city2 = person4.address?.city ?? "unknown city"
 console.log(city2)
@@ -283,6 +286,7 @@ const employees = [
 ];
 
 //1. Finding employee list using map.
+// Syntax -array.map(element => newValue);
 const employeNames = employees.map(employee => employee.name)
 console.log(employeNames)
 
@@ -344,11 +348,11 @@ printemployee(
 
 // *
 function getEmployeeSummary(employee) {
-    const { name, department, salary } = employee;
+    const { name, department, salary } = employee;     //Destructuring 
 
-    const employeeSalary = salary ?? "Salary not available";
+    const employeeSalary = salary ?? "Salary not available";     //Nullish coalscing
 
-    return `${name} works in ${department} and earns ${employeeSalary}.`;
+    return `${name} works in ${department} and earns ${employeeSalary}.`;     //Template literal
 }
 
 console.log(getEmployeeSummary(employees[0]));

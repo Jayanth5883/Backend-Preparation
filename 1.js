@@ -28,6 +28,8 @@ console.log(message)
 // - TDZ  is the period between entering the variables scope and the point where the let or const variable is initialized
 // During this period the variable cannot be accessed 
 
+// From the moment the scope/block is entered until the const declaration is initialized.very short tdz
+
 // (3)  Data Types-
 // A value in JavaScript is always of a certain type. For example, a string or a number.
 
@@ -49,6 +51,7 @@ const bigInt = 1234567890123456789012345678901234567890n;
 // String- in js must be surrounded by quotes.
 let str = "Hello";
 let str2 = 'Single quotes are ok too';
+// Template literal
 let phrase = `can embed another ${str}`;
 
 //4  Boolean(logic type)-The boolean type has only two values: true and false.
@@ -62,7 +65,7 @@ console.log(typeof age)
 // /6 Undefined-The meaning of undefined is “value is not assigned”.
 // If a variable is declared, but not assigned, then its value is undefined:
 
-// (7) Symbol- It is used to create a unique identifier.
+// (7) Symbol()- It is used to create a unique identifier.
 // /ex: const id = Symbol();
 // Why do we need symbol (uniqueueness)-
 const id1 = Symbol("id");
@@ -87,7 +90,7 @@ const user1 = {
     age: 25,
     isAdmin: true
 };
-// Accessing objects 1.using dot notation and square bracket.
+// Accessing objects 1.using dot notation and square bracket(with quotes).
 console.log(user1.name);
 console.log(user["name"])
 
@@ -99,7 +102,7 @@ const user4 = {
 user.age = 26;     // we cannot reassaign but we can modify 
 console.log(user.age);
 
-// Object is a reference value -Because user2 & user3 refer to same object.
+// Object is a reference value -Because user2 & user3 refer to same object.reassaign by creating another object.
 const user2 = {
     name: "Jayanth"
 };
@@ -130,7 +133,7 @@ greet.message="property added to function";
 console.log(greet.message);
 console.log(typeof(greet))  
 
-// 8.4 Date- is another built in object.
+// 8.4 Date()- is another built in object.
 const today=new Date()
 console.log(today)
 // It represents date time information.
@@ -139,6 +142,7 @@ console.log(today.getMonth())
 
 // 8.5 Map is an object designed to store key value pairs.
 // Advantage keys can be of any type. 
+// We can retrive by key's using get()
 const users = new Map();
 users.set(1, "Jayanth");
 users.set("user2", "Rahul");
@@ -213,10 +217,10 @@ tp="hello"
 console.log(typeof(tp))
 typeof (10)         
 typeof true       
-typeof undefined   
+console.log(typeof undefined)   
 console.log(typeof(10n))         
-typeof Symbol()    
-typeof {}          
+console.log(typeof Symbol())    
+console.log(typeof {})          
 
 // 8. Bitwise operators 
 // & Both bits must be 1.
