@@ -39,6 +39,8 @@ person.hello()
 
 
 // =>  call,apply,bind- Ways to control "this" while calling a function.
+// call() immediately invokes a function with a specific value of this.
+// The main use of call() is to execute a function while explicitly setting what this should refer to.
 // (2. ) CAll -Syntax- function.call(object,argument1,argument2);
 
 const grete = {
