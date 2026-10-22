@@ -137,6 +137,12 @@ fs.readFile('data:text/plain,hello world', 'utf8', () => {
   console.log('2. Still inside file callback');
 });
 
+// Check phase poll phase
+// fs.readFile() performs file I/O.
+// When the file read completes, its callback is executed during the poll phase.
+// Inside that callback, setImmediate() schedules the inner callback for the check phase.
+// Once the fs.readFile() callback returns and the poll phase completes, Node moves directly to the check phase and executes the setImmediate() callback.
+
 // fs.readFile() starts reading the file asynchronously.
 // When the file reading completes, its callback executes during the poll phase.
 // Inside that callback, setImmediate() schedules another callback for the check phase.
