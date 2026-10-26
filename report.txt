@@ -1,1 +1,2 @@
-normal text file content
+I am writing from the vs code by the writeble stream 
+Writing completed

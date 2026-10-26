@@ -153,3 +153,85 @@ fs.readFile('data:text/plain,hello world', 'utf8', () => {
 // setImmediate() → schedules its callback for the check phase.
 // The setImmediate() callback does not execute immediately inside the setImmediate() function call.
 //  It executes when Node.js reaches the check phase.
+
+
+
+START
+  │
+  ▼
+1. Run main script synchronously
+   └── Push functions onto CALL STACK
+   └── Pop them when finished
+  │
+  ▼
+2. Call stack becomes empty?
+   │
+   ▼
+3. Drain process.nextTick queue completely
+   └── Highest priority
+   └── New nextTick callbacks added during this step also run
+  │
+  ▼
+4. Drain Promise microtask queue completely
+   └── Promise.then / catch / finally
+   └── await continuations
+   └── queueMicrotask()
+   └── New microtasks added during this step also run
+  │
+  ▼
+5. Enter EVENT LOOP
+  │
+  ▼
+┌──────────────────────────────────────────────┐
+│ 6. TIMERS PHASE                              │
+│    Run expired setTimeout / setInterval      │
+│    callbacks                                 │
+│    After each callback:                      │
+│      nextTick queue → microtask queue        │
+└──────────────────────┬───────────────────────┘
+                       ▼
+┌──────────────────────────────────────────────┐
+│ 7. PENDING CALLBACKS PHASE                   │
+│    Run deferred system / I/O callbacks       │
+│    After each callback:                      │
+│      nextTick queue → microtask queue        │
+└──────────────────────┬───────────────────────┘
+                       ▼
+┌──────────────────────────────────────────────┐
+│ 8. IDLE, PREPARE PHASE                       │
+│    Internal use only                         │
+└──────────────────────┬───────────────────────┘
+                       ▼
+┌──────────────────────────────────────────────┐
+│ 9. POLL PHASE                                │
+│    Run I/O callbacks                         │
+│    Examples: fs, network, sockets            │
+│    If idle and setImmediate exists:          │
+│      go to CHECK phase                       │
+│    If idle and no setImmediate:              │
+│      may wait for I/O                        │
+│    After each callback:                      │
+│      nextTick queue → microtask queue        │
+└──────────────────────┬───────────────────────┘
+                       ▼
+┌──────────────────────────────────────────────┐
+│ 10. CHECK PHASE                              │
+│     Run all setImmediate() callbacks         │
+│     After each callback:                     │
+│       nextTick queue → microtask queue       │
+└──────────────────────┬───────────────────────┘
+                       ▼
+┌──────────────────────────────────────────────┐
+│ 11. CLOSE CALLBACKS PHASE                    │
+│     Run close handlers, e.g.                 │
+│     socket.on('close', ...)                  │
+│     After each callback:                     │
+│       nextTick queue → microtask queue       │
+└──────────────────────┬───────────────────────┘
+                       ▼
+             More work available?
+                 │           │
+                Yes          No
+                 │           │
+                 ▼           ▼
+       Repeat event loop   Exit / wait
