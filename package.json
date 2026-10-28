@@ -1,10 +1,13 @@
 {
   "name": "backend_preparation",
   "scripts": {
-    "hello": "node 13.js"
+    "hello": "node 13.js",
+    "app":"node server.js",
+    "dev":"node --watch server.js"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
-    "dotenv": "^18.0.9"
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0"
   }
 }
