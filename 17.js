@@ -121,3 +121,8 @@ app.use((err, req, res, next) => {
 app.listen(3000, () => {
     console.log("Server running on port 3000");
 });
+
+
+// app.use is a way to inject a 'plugin' or 'check point' into a server .Any request that comes into your api must pass through these checkpoints 
+// before reaching your final route handlers
+
