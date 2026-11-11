@@ -38,7 +38,7 @@
 // )
 
 // create table profiles(
-    // profile_id serial serial primary key,
+    // profile_id serial primary key,
     // user_id int unique references users(user_id),
     // bio text
 // )
@@ -51,7 +51,7 @@
 
 // create table orders (
 //     order_id serial primary key,
-//     user_id int references useSyncExternalStore(user_id),
+//     user_id int references users(user_id),
 //     product varchar(100)
 // );
 
